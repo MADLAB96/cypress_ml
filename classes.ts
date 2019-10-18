@@ -97,13 +97,15 @@ export class Suite {
 
     public generate(baseSuite: any): void {
         this.title = baseSuite.title;
-        
+
+        console.log(`\t\tGenerating from ${baseSuite.suites.length} base suites`);
         baseSuite.suites.forEach((bs: any) => {
             let suite = new Suite();
             suite.generate(bs);
             this.suites.push(suite);
         });
 
+        console.log(`\t\tGenerating from ${baseSuite.tests.length} base tests`);
         baseSuite.tests.forEach((bt: any) => {
             let test = new Test();
             test.generate(bt);

@@ -5,8 +5,7 @@ import * as classes from './classes';
 
 function main() {
     console.log('==============STARTING==============');
-    let obj = generate();
-
+    generate();
     console.log('===============ENDING===============');
 }
 
@@ -31,6 +30,7 @@ function generate() {
 function generateSpecs(): any[] {
     let specsList: any[] = [];
 
+    console.log(`Generating from ${dataFormat.specs.length} base specs`);
     dataFormat.specs.forEach(baseSpec => {
         let spec = new classes.Spec();
         let suiteList: any[] = [];
@@ -38,6 +38,8 @@ function generateSpecs(): any[] {
         // Set the static data
         spec.title = baseSpec.title;
         spec.capabilities = baseSpec.caps;
+    
+        console.log(`\tGenerating from ${baseSpec.suites.length} base suites`);
 
         baseSpec.suites.forEach(baseSuite => {
             // Set the static data of new Suite object
