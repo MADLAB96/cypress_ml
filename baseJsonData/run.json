@@ -1,0 +1,14 @@
+{
+    "title": "",
+    "runId": "",
+    "duration": 0,
+    "sourceBranch": "",
+    "destinationBranch": "",
+    "specs": [{
+        "passCount": 0,
+        "failCount": 0,
+        "pendCount": 0,
+        "capabilities": [],        
+        "suites": []
+    }]
+}

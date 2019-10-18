@@ -1,0 +1,313 @@
+{
+    "title": "Base",
+    "specs": [
+        {
+            "title": "Landing",
+            "passCount": 0,
+            "failCount": 0,
+            "pendCount": 0,
+            "duration": 0,
+            "capabilities": [
+                "Low Pri",
+                "High Pri"
+            ],
+            "suites": [
+                {
+                    "title": "Landing Suite 1",
+                    "passCount": 0,
+                    "failCount": 0,
+                    "pendCount": 0,
+                    "duration": 0,
+                    "capabilities": [],
+                    "tests": [
+                        {
+                            "title": "Landing Suite 1 || Test 1 || always",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "Low Pri"
+                        },
+                        {
+                            "title": "Landing Suite 1 || Test 2 || high",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "Low Pri"
+                        },
+                        {
+                            "title": "Landing Suite 1 || Test 3 || med",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "Low Pri"
+                        },
+                        {
+                            "title": "Landing Suite 1 || Test 4 || low",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "Low Pri"
+                        },
+                        {
+                            "title": "Landing Suite 1 || Test 5 || never",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "Low Pri"
+                        }
+                    ],
+                    "suites": [
+                        {
+                            "title": "Landing Suite 1 || Suite 1",
+                            "passCount": 0,
+                            "failCount": 0,
+                            "pendCount": 0,
+                            "duration": 0,
+                            "capabilities": [],
+                            "tests": [
+                                {
+                                    "title": "Landing Suite 1 || Suite 1 || Test 1 || always",
+                                    "status": "passed",
+                                    "message": "SUCCESS",
+                                    "duration": 1000,
+                                    "capabilities": "Low Pri"
+                                },
+                                {
+                                    "title": "Landing Suite 1 || Suite 1 || Test 2 || high",
+                                    "status": "passed",
+                                    "message": "SUCCESS",
+                                    "duration": 1000,
+                                    "capabilities": "Low Pri"
+                                },
+                                {
+                                    "title": "Landing Suite 1 || Suite 1 || Test 3 || med",
+                                    "status": "passed",
+                                    "message": "SUCCESS",
+                                    "duration": 1000,
+                                    "capabilities": "Low Pri"
+                                },
+                                {
+                                    "title": "Landing Suite 1 || Suite 1 || Test 4 || low",
+                                    "status": "passed",
+                                    "message": "SUCCESS",
+                                    "duration": 1000,
+                                    "capabilities": "Low Pri"
+                                },
+                                {
+                                    "title": "Landing Suite 1 || Suite 1 || Test 5 || never",
+                                    "status": "passed",
+                                    "message": "SUCCESS",
+                                    "duration": 1000,
+                                    "capabilities": "Low Pri"
+                                }
+                            ],
+                            "suites": []
+                        }
+                    ]
+                },
+                {
+                    "title": "Landing Suite 2",
+                    "passCount": 0,
+                    "failCount": 0,
+                    "pendCount": 0,
+                    "duration": 0,
+                    "capabilities": [],
+                    "tests": [
+                        {
+                            "title": "Landing Suite 1 || Test 1 || always",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "High Pri"
+                        },
+                        {
+                            "title": "Landing Suite 1 || Test 2 || high",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "High Pri"
+                        },
+                        {
+                            "title": "Landing Suite 1 || Test 3 || med",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "High Pri"
+                        },
+                        {
+                            "title": "Landing Suite 1 || Test 4 || low",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "High Pri"
+                        },
+                        {
+                            "title": "Landing Suite 1 || Test 5 || never",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "High Pri"
+                        }
+                    ],
+                    "suites": []
+                }
+            ]
+        },
+        {
+            "title": "Form",
+            "passCount": 0,
+            "failCount": 0,
+            "pendCount": 0,
+            "duration": 0,
+            "capabilities": [
+                "Low Pri",
+                "High Pri"
+            ],
+            "suites": [
+                {
+                    "title": "Form Suite 1",
+                    "passCount": 0,
+                    "failCount": 0,
+                    "pendCount": 0,
+                    "duration": 0,
+                    "capabilities": [],
+                    "tests": [
+                        {
+                            "title": "Form Suite 1 || Test 1 || always",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "Low Pri"
+                        },
+                        {
+                            "title": "Form Suite 1 || Test 2 || always",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "Low Pri"
+                        },
+                        {
+                            "title": "Form Suite 1 || Test 3 || always",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "Low Pri"
+                        },
+                        {
+                            "title": "Form Suite 1 || Test 4 || always",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "Low Pri"
+                        },
+                        {
+                            "title": "Form Suite 1 || Test 5 || always",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "Low Pri"
+                        }
+                    ],
+                    "suites": [
+                        {
+                            "title": "Form Suite 1 || Suite 1",
+                            "passCount": 0,
+                            "failCount": 0,
+                            "pendCount": 0,
+                            "duration": 0,
+                            "capabilities": [],
+                            "tests": [
+                                {
+                                    "title": "Form Suite 1 || Suite 1 || Test 1 || never",
+                                    "status": "passed",
+                                    "message": "SUCCESS",
+                                    "duration": 1000,
+                                    "capabilities": "Low Pri"
+                                },
+                                {
+                                    "title": "Form Suite 1 || Suite 1 || Test 2 || never",
+                                    "status": "passed",
+                                    "message": "SUCCESS",
+                                    "duration": 1000,
+                                    "capabilities": "Low Pri"
+                                },
+                                {
+                                    "title": "Form Suite 1 || Suite 1 || Test 3 || never",
+                                    "status": "passed",
+                                    "message": "SUCCESS",
+                                    "duration": 1000,
+                                    "capabilities": "Low Pri"
+                                },
+                                {
+                                    "title": "Form Suite 1 || Suite 1 || Test 4 || never",
+                                    "status": "passed",
+                                    "message": "SUCCESS",
+                                    "duration": 1000,
+                                    "capabilities": "Low Pri"
+                                },
+                                {
+                                    "title": "Form Suite 1 || Suite 1 || Test 5 || never",
+                                    "status": "passed",
+                                    "message": "SUCCESS",
+                                    "duration": 1000,
+                                    "capabilities": "Low Pri"
+                                }
+                            ],
+                            "suites": []
+                        }
+                    ]
+                },
+                {
+                    "title": "Form Suite 2",
+                    "passCount": 0,
+                    "failCount": 0,
+                    "pendCount": 0,
+                    "duration": 0,
+                    "capabilities": [],
+                    "tests": [
+                        {
+                            "title": "Form Suite 1 || Test 1 || low",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "High Pri"
+                        },
+                        {
+                            "title": "Form Suite 1 || Test 2 || low",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "High Pri"
+                        },
+                        {
+                            "title": "Form Suite 1 || Test 3 || low",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "High Pri"
+                        },
+                        {
+                            "title": "Form Suite 1 || Test 4 || low",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "High Pri"
+                        },
+                        {
+                            "title": "Form Suite 1 || Test 5 || low",
+                            "status": "passed",
+                            "message": "SUCCESS",
+                            "duration": 1000,
+                            "capabilities": "High Pri"
+                        }
+                    ],
+                    "suites": []
+                }
+            ]
+        }
+    ],
+    "duration": 0,
+    "runid": 1,
+    "sourceBranch": "source",
+    "destinationBranch": "dev"
+}
