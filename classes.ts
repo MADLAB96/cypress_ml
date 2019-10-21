@@ -3,7 +3,6 @@ export class Spec {
     public passCount: number;
     public failCount: number;
     public pendCount: number;
-    public duration: number;
     public capabilities: string[];
     public suites: Suite[];
 
@@ -12,7 +11,6 @@ export class Spec {
         this.passCount = 0;
         this.failCount = 0;
         this.pendCount = 0;
-        this.duration = 0;
         this.capabilities = [];
         this.suites = [];
     }
@@ -32,7 +30,6 @@ export class Spec {
             passCount: this.passCount,
             failCount: this.failCount,
             pendCount: this.pendCount,
-            duration: this.duration,
             capabilities: this.capabilities,
             suites: suitesList,
         }
@@ -48,7 +45,6 @@ export class Suite {
     public passCount: number;
     public failCount: number;
     public pendCount: number;
-    public duration: number;
     public capabilities: string[];
     public tests: Test[];
     public suites: Suite[];
@@ -58,7 +54,6 @@ export class Suite {
         this.passCount = 0;
         this.failCount = 0;
         this.pendCount = 0;
-        this.duration = 0;
         this.capabilities = [];
         this.tests = [];
         this.suites = [];
@@ -85,19 +80,26 @@ export class Suite {
             passCount: this.passCount,
             failCount: this.failCount,
             pendCount: this.pendCount,
-            duration: this.duration,
             capabilities: this.capabilities,
             suites: suitesList,
         }
     }
 
     public count(): void {
+        let pass = 0;
+        let fail = 0;
+        this.tests.forEach(test => {
+            if(test.status === 'passed') pass++;
+            if(test.status === 'failed') fail++;
+        });
 
+        this.passCount = pass;
+        this.failCount = fail;
     }
 
     public generate(baseSuite: any): void {
         this.title = baseSuite.title;
-
+        this.capabilities = baseSuite.caps;
         console.log(`\t\tGenerating from ${baseSuite.suites.length} base suites`);
         baseSuite.suites.forEach((bs: any) => {
             let suite = new Suite();
@@ -111,21 +113,19 @@ export class Suite {
             test.generate(bt);
             this.tests.push(test);
         });
+        
+        this.count();
     }
 }
 
 export class Test {
     public title: string;
     public status: string;
-    public message: string;
-    public duration: number;
     public capabilities: string[];
 
     constructor() {
         this.title = "";
         this.status = "";
-        this.message = "";
-        this.duration = 0;
         this.capabilities = [];
     }
 
@@ -135,21 +135,26 @@ export class Test {
         return {
             title: this.title,
             status: this.status,
-            message: this.message,
-            duration: this.duration,
             capabilities: this.capabilities,
         }
     }
 
-    public count(): void {
-
+    private calcPass(seed: number): void {
+        let randomNum = Math.floor(Math.random() * 100);
+        if(randomNum < seed) {
+            //passed
+            this.status = 'failed';
+            console.log(`\t\t\ttest failed ${seed} - ${randomNum}`)
+        } else {
+            //fail
+            this.status = 'passed';
+            console.log(`\t\t\ttest passed ${seed} - ${randomNum}`)
+        }
     }
 
     public generate(baseTest: any): void {
         this.title = baseTest.title;
-        this.status = 'passed';
-        this.message = 'SUCCESS';
-        this.duration = 1000;
-        this.capabilities = baseTest.cap;
+        this.calcPass(baseTest.freq);
+        this.capabilities = baseTest.caps;
     }
 }

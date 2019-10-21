@@ -15,7 +15,6 @@ function generate() {
     // INIT OutputObject
     genObj.title = dataFormat.title;
     genObj.specs = [];
-    genObj.duration = 0;
     genObj.runid = 1;
     genObj.sourceBranch = "source";
     genObj.destinationBranch = "dev";
