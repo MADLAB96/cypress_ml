@@ -100,14 +100,14 @@ export class Suite {
     public generate(baseSuite: any): void {
         this.title = baseSuite.title;
         this.capabilities = baseSuite.caps;
-        console.log(`\t\tGenerating from ${baseSuite.suites.length} base suites`);
+        if(process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'dev') console.log(`\t\tGenerating from ${baseSuite.suites.length} base suites`);
         baseSuite.suites.forEach((bs: any) => {
             let suite = new Suite();
             suite.generate(bs);
             this.suites.push(suite);
         });
 
-        console.log(`\t\tGenerating from ${baseSuite.tests.length} base tests`);
+        if(process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'dev') console.log(`\t\tGenerating from ${baseSuite.tests.length} base tests`);
         baseSuite.tests.forEach((bt: any) => {
             let test = new Test();
             test.generate(bt);
@@ -144,11 +144,11 @@ export class Test {
         if(randomNum < seed) {
             //passed
             this.status = 'failed';
-            console.log(`\t\t\ttest failed ${seed} - ${randomNum}`)
+            if(process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'dev') console.log(`\t\t\ttest failed ${seed} - ${randomNum}`)
         } else {
             //fail
             this.status = 'passed';
-            console.log(`\t\t\ttest passed ${seed} - ${randomNum}`)
+            if(process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'dev') console.log(`\t\t\ttest passed ${seed} - ${randomNum}`)
         }
     }
 

@@ -5,11 +5,21 @@ import * as classes from './classes';
 
 function main() {
     console.log('==============STARTING==============');
-    generate();
+    console.log('started in env:' + process.env.NODE_ENV);
+    if(process.argv.length === 2) {
+        generate('test.json');
+    } else if(process.argv.length === 3) {
+        for (let i = 0; i < parseInt(process.argv[2]); i++) {
+            generate(`run${i}.json`);
+        }
+    } else {
+        console.error('Bad commandline args');
+        process.exit();
+    }
     console.log('===============ENDING===============');
 }
 
-function generate() {
+function generate(fileName: string) {
     let genObj: any = {};
 
     // INIT OutputObject
@@ -21,7 +31,7 @@ function generate() {
 
     genObj.specs = generateSpecs();
 
-    fs.writeFileSync('test.json', JSON.stringify(genObj));
+    fs.writeFileSync('./outputData/' + fileName, JSON.stringify(genObj));
 
     return genObj;
 }
@@ -29,7 +39,7 @@ function generate() {
 function generateSpecs(): any[] {
     let specsList: any[] = [];
 
-    console.log(`Generating from ${dataFormat.specs.length} base specs`);
+    if(process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'dev') console.log(`Generating from ${dataFormat.specs.length} base specs`);
     dataFormat.specs.forEach(baseSpec => {
         let spec = new classes.Spec();
         let suiteList: any[] = [];
@@ -38,7 +48,7 @@ function generateSpecs(): any[] {
         spec.title = baseSpec.title;
         spec.capabilities = baseSpec.caps;
     
-        console.log(`\tGenerating from ${baseSpec.suites.length} base suites`);
+        if(process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'dev') console.log(`\tGenerating from ${baseSpec.suites.length} base suites`);
 
         baseSpec.suites.forEach(baseSuite => {
             // Set the static data of new Suite object

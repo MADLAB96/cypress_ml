@@ -4,8 +4,11 @@
   "description": "scripts to build data for ml P.O.C.",
   "main": "index.ts",
   "scripts": {
-    "start": "tsc && node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "set NODE_ENV=dev && tsc && node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "100": "set NODE_ENV=prod && tsc && node index.js 100",
+    "500": "set NODE_ENV=prod && tsc && node index.js 500",
+    "clean": "rm -r ./outputData/*"
   },
   "author": "",
   "license": "ISC",
