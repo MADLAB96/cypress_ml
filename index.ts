@@ -60,7 +60,12 @@ function generateSpecs(): any[] {
         specsList.push(spec);
     });
 
+    convertToCVS(specsList);
     return specsList;
+}
+
+function convertToCVS(specsList: any[]) {
+    
 }
 
 main();

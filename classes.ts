@@ -36,7 +36,15 @@ export class Spec {
     }
 
     public count(): void {
+        let pass = 0;
+        let fail = 0;
+        this.suites.forEach(suite => {
+            pass += suite.passCount;
+            fail += suite.failCount;
+        });
 
+        this.passCount = pass;
+        this.failCount = fail;
     }
 }
 
