@@ -57,6 +57,7 @@ function generateSpecs(): any[] {
             suiteList.push(suite);
         });
         spec.suites = suiteList;
+        spec.count();
         specsList.push(spec);
     });
 
@@ -65,7 +66,7 @@ function generateSpecs(): any[] {
 }
 
 function convertToCVS(specsList: any[]) {
-    
+
 }
 
 main();
