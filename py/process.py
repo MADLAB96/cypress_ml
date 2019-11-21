@@ -8,10 +8,12 @@ import os
 from pandas.io.json import json_normalize
 from pandas import DataFrame as df
 from datetime import datetime
+from random import seed
+from random import randint
 
-linesChangedByCap = { "Low Pri": [0, 0, 0, 0, 0, 10, 20, 20, 30, 30],               # 0 - 30 lines changed
-                      "Med Pri": [100, 100, 10, 50, 75, 10, 0, 100, 99, 25],        # 0 - 100 lines changed
-                      "High Pri": [200, 250, 300, 350, 400, 450, 500, 550, 600] }   # 200 - 600 lines changed
+linesChangedByCap = { "Low Pri":    [0, 0, 0, 0, 0, 0, 0, 0, 2, 5],             # 0 - 5 lines changed
+                      "Med Pri":    [0, 0, 0, 0, 0, 5, 5, 10, 25, 25],          # 0 - 25 lines changed
+                      "High Pri":   [25, 25, 25, 25, 25, 50, 50, 75, 100] }     # 25 - 100 lines changed
 
 
 def replaceSpecTestFields(allSuites, allTests):
@@ -36,6 +38,17 @@ def replaceSpecTestFields(allSuites, allTests):
         
     return allSuites;
     
+def determineLinesChanged(testsDf):
+    newList = []
+    for title, test in testsDf.iterrows():
+        possibleLC = linesChangedByCap[test['capabilities'][0]]
+        #test['linesChanged'] = possibleLC[randint(0, len(possibleLC) - 1)]
+        newList.append(possibleLC[randint(0, len(possibleLC) - 1)])
+        #changedTests.append(test)
+    
+    #return changedTests;
+    return newList;
+
 def parseSuitesAndTests(spec, title):
     print('parsing suites:', title)
     suiteRP = ['suites']
@@ -48,6 +61,7 @@ def parseSuitesAndTests(spec, title):
     
     while(tempSuite.empty != True):
         tempTest['specTitle'] = title
+        tempTest['linesChanged'] = determineLinesChanged(tempTest)
         suites.append(tempSuite)
         tests.append(tempTest)
         tempSuite = json_normalize(data=spec['suites'], record_path=suiteRP)
@@ -120,9 +134,6 @@ def parseRuns(dirPath):
     
     return flattenData(allRuns)
 
-# this is for the variable explorer
-# allSuites, allTests, specs = parseSpecs('run14.json')
-# parse all runs in outputData directory
 startTime = datetime.now()
 runs, ftl = parseRuns('C:/Users/madlab/repos/cypressML/outputData')
 ftl.to_csv('large_testlist.csv')
