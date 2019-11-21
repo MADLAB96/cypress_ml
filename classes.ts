@@ -97,8 +97,8 @@ export class Suite {
         let pass = 0;
         let fail = 0;
         this.tests.forEach(test => {
-            if(test.status === 'passed') pass++;
-            if(test.status === 'failed') fail++;
+            if(test.status === 1) pass++;
+            if(test.status === 0) fail++;
         });
 
         this.passCount = pass;
@@ -128,12 +128,12 @@ export class Suite {
 
 export class Test {
     public title: string;
-    public status: string;
+    public status: number;
     public capabilities: string[];
 
     constructor() {
         this.title = "";
-        this.status = "";
+        this.status = 0;
         this.capabilities = [];
     }
 
@@ -150,12 +150,10 @@ export class Test {
     private calcPass(seed: number): void {
         let randomNum = Math.floor(Math.random() * 100);
         if(randomNum < seed) {
-            //passed
-            this.status = 'failed';
+            this.status = 0;
             if(process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'dev') console.log(`\t\t\ttest failed ${seed} - ${randomNum}`)
         } else {
-            //fail
-            this.status = 'passed';
+            this.status = 1;
             if(process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'dev') console.log(`\t\t\ttest passed ${seed} - ${randomNum}`)
         }
     }

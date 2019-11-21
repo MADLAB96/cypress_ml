@@ -136,7 +136,7 @@ def parseRuns(dirPath):
 
 startTime = datetime.now()
 runs, ftl = parseRuns('C:/Users/madlab/repos/cypressML/outputData')
-ftl.to_csv('large_testlist.csv')
+ftl.to_csv('small_testlist.csv')
 print(datetime.now() - startTime)
 
 totalFailingRuns = 0
