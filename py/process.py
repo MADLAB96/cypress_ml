@@ -9,6 +9,11 @@ from pandas.io.json import json_normalize
 from pandas import DataFrame as df
 from datetime import datetime
 
+linesChangedByCap = { "Low Pri": [0, 0, 0, 0, 0, 10, 20, 20, 30, 30],               # 0 - 30 lines changed
+                      "Med Pri": [100, 100, 10, 50, 75, 10, 0, 100, 99, 25],        # 0 - 100 lines changed
+                      "High Pri": [200, 250, 300, 350, 400, 450, 500, 550, 600] }   # 200 - 600 lines changed
+
+
 def replaceSpecTestFields(allSuites, allTests):
     """ Util function to help replace a list of json objs with their ids. Returns array of ids/titles """
     index = 0
@@ -42,6 +47,7 @@ def parseSuitesAndTests(spec, title):
     tempTest = json_normalize(data=spec['suites'], record_path=testRP)
     
     while(tempSuite.empty != True):
+        tempTest['specTitle'] = title
         suites.append(tempSuite)
         tests.append(tempTest)
         tempSuite = json_normalize(data=spec['suites'], record_path=suiteRP)
@@ -56,8 +62,9 @@ def parseSuitesAndTests(spec, title):
     allTests = pd.concat(tests, axis=0)
     allTests['specTitle'] = title
     
-    return allSuites.set_index('title'), allTests.set_index('title');
-    
+    #return allSuites.set_index('title'), allTests.set_index('title');
+    return allSuites, allTests;
+
 # Open a json and make lists of suites and tests (only way I know how to do this)
 # Will probably have to come back and add another list, for list of specs
     
@@ -85,6 +92,19 @@ def parseSpecs(fileName):
         
     return replaceSpecTestFields(allSuites, allTests), allTests, specs;
 
+def flattenData(runs):
+    fullTestList = []
+    index = 0
+    for run in runs:        
+        run[1]['title'] = "run" + str(index) + " -- " + run[1]['title']
+        # TODO add more fields to each run
+        fullTestList.append(run[1])
+        index += 1
+        
+    ftl = pd.concat(fullTestList)
+    ftl = ftl.set_index('title')
+    return runs, ftl
+
 def parseRuns(dirPath):
     allRuns = []
     files = []
@@ -98,14 +118,40 @@ def parseRuns(dirPath):
         suites, tests, specs = parseSpecs(f)
         allRuns.append([suites, tests, specs])
     
-    return allRuns
-    
-    
+    return flattenData(allRuns)
 
 # this is for the variable explorer
-#allSuites, allTests, specs = parseSpecs('run14.json')
+# allSuites, allTests, specs = parseSpecs('run14.json')
 # parse all runs in outputData directory
 startTime = datetime.now()
-runs = parseRuns('C:/Users/madlab/repos/cypressML/outputData')
+runs, ftl = parseRuns('C:/Users/madlab/repos/cypressML/outputData')
+ftl.to_csv('large_testlist.csv')
 print(datetime.now() - startTime)
 
+totalFailingRuns = 0
+totalPassingRuns = 0
+
+totalFailingTests = 0
+totalPassingTests = 0
+
+for run in runs:
+    specFailCount = []
+    specPassCount = []
+    specFailCount.append(run[2]['failCount'][0])
+    specFailCount.append(run[2]['failCount'][1])
+    specFailCount.append(run[2]['failCount'][2])
+    
+    specPassCount.append(run[2]['passCount'][0])
+    specPassCount.append(run[2]['passCount'][1])
+    specPassCount.append(run[2]['passCount'][2])
+    
+    totalFailingTests += sum(specFailCount) 
+    totalPassingTests += sum(specPassCount) 
+    
+    if(sum(specFailCount) > 0):
+        totalFailingRuns += 1
+    else:
+        totalPassingRuns += 1
+
+print('Passing: ', totalPassingRuns, '-- Total Passing Tests', totalPassingTests)
+print('Failing: ', totalFailingRuns, '-- Total Failing Tests', totalFailingTests)
